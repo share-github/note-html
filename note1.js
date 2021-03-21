@@ -11,6 +11,7 @@
   /**
    * If necessary, write the character style.
    * ex) const blockStyle = 'border:1px solid red;';
+   *     const blockStyle = 'background-color: #ffe4f1';
    */
   const blockStyle = '';
 
