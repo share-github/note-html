@@ -1,27 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" contenteditable>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>note</title>
   </head>
   <style>
     html {
       font-size: 0.8rem;
-    }
-    div {
-      background-color: #fcf4ac;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      border-radius: 4px;
-      padding: 5px;
-      margin: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    p,
-    pre {
-      margin: 0;
-      font-family: "メイリオ", sans-serif;
     }
     button {
       display: inline-block;
@@ -43,65 +30,75 @@
       border-color: #3c914a;
       color: #fff;
     }
-    .path-box {
-      background-color: white;
+    .button-box {
       display: flex;
-      flex-direction: row;
+      justify-content: flex-end;
       align-items: center;
-      border: none;
-      box-shadow: none;
     }
-    section > section {
+    .note-area {
       display: flex;
-      flex-direction: row;
       flex-wrap: wrap;
       align-content: flex-start;
+    }
+    .note {
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      padding: 5px;
+      margin: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .yellow {
+      background-color: #fcf4ac;
+    }
+    .red {
+      background-color: #ffe4f1;
+    }
+    .note-text {
+      margin: 0;
+      font-family: "メイリオ", sans-serif;
     }
   </style>
   <title>note</title>
   <body>
-    <section>
-      <h1 id="directoryPath">D:\...\</h1>
-      <div class="path-box">
-        <p id="htmlPath">"C:\Program Files (x86)\sakura\sakura.exe" D:\...\note.html</p>
-        <button id="copyHtmlPath">COPY</button>
-        <button id="copyDirectoryPath">COPY DIRECTORY</button>
+    <header>
+      <div class="button-box">
+        <button type="button" id="newNote">new note</button>
+        <button type="button" id="newRedNote">new red note</button>
       </div>
-    </section>
+    </header>
 
-    <section>
-      <h1>cheat sheet</h1>
-      <section>
-        <!-- cheat sheet area -->
-
-        <!-- template --><!--
-        <div style="">
-          <p style="">sample</p>
-        </div>
-        --><!-- /template -->
-
-        <!-- /cheat sheet area -->
-      </section>
-    </section>
-
-    <section>
-      <h2>note</h2>
-      <section>
-        <!-- note area -->
-        <script src="./note1.js"></script>
-        <!-- /note area -->
-      </section>
+    <section class="note-area">
+      <!-- note area -->
+      <!-- /note area -->
     </section>
 
     <script>
-      document.querySelector("#copyDirectoryPath").onclick = () => {
-        const text = document.querySelector("#directoryPath").textContent.trim();
-        navigator.clipboard.writeText(text);
+      document.querySelector("#newNote").onclick = () => {
+        createNote("yellow");
       };
-      document.querySelector("#copyHtmlPath").onclick = () => {
-        const text = document.querySelector("#htmlPath").textContent.trim();
-        navigator.clipboard.writeText(text);
+      document.querySelector("#newRedNote").onclick = () => {
+        createNote("red");
       };
+      function createNote(color) {
+        const noteArea = document.querySelector(".note-area");
+        const note = createNoteContent(color);
+        const noteText = createNoteText();
+        note.appendChild(noteText);
+        noteArea.appendChild(note);
+      }
+      function createNoteContent(color) {
+        const noteContent = document.createElement("div");
+        noteContent.classList.add("note");
+        if (color === "yellow") noteContent.classList.add("yellow");
+        if (color === "red") noteContent.classList.add("red");
+        return noteContent;
+      }
+      function createNoteText() {
+        const noteText = document.createElement("pre");
+        noteText.classList.add("note-text");
+        noteText.innerText = "Write_here";
+        return noteText;
+      }
     </script>
   </body>
 </html>

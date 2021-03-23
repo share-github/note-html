@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    html {
+      font-size: 0.8rem;
+    }
+    div {
+      background-color: #fcf4ac;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      padding: 5px;
+      margin: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    p,
+    pre {
+      margin: 0;
+      font-family: "メイリオ", sans-serif;
+    }
+    button {
+      display: inline-block;
+      max-width: 180px;
+      text-align: left;
+      border: 2px solid #3c914a;
+      font-size: 1rem;
+      color: #3c914a;
+      background-color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 4px 5px;
+      margin: 0 5px;
+      border-radius: 4px;
+      transition: 0.4s;
+    }
+    button:hover {
+      background-color: #3c914a;
+      border-color: #3c914a;
+      color: #fff;
+    }
+    .path-box {
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      border: none;
+      box-shadow: none;
+    }
+    section > section {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: flex-start;
+    }
+  </style>
+  <title>note</title>
+  <body>
+    <section>
+      <h1 id="directoryPath">D:\...\</h1>
+      <div class="path-box">
+        <p id="htmlPath">"C:\Program Files (x86)\sakura\sakura.exe" D:\...\note.html</p>
+        <button id="copyHtmlPath">COPY</button>
+        <button id="copyDirectoryPath">COPY DIRECTORY</button>
+      </div>
+    </section>
+
+    <section>
+      <h1>cheat sheet</h1>
+      <section>
+        <!-- cheat sheet area -->
+
+        <!-- template --><!--
+        <div style="">
+          <p style="">sample</p>
+        </div>
+        --><!-- /template -->
+
+        <!-- /cheat sheet area -->
+      </section>
+    </section>
+
+    <section>
+      <h2>note</h2>
+      <section>
+        <!-- note area -->
+        <script src="./note1.js"></script>
+        <!-- /note area -->
+      </section>
+    </section>
+
+    <script>
+      document.querySelector("#copyDirectoryPath").onclick = () => {
+        const text = document.querySelector("#directoryPath").textContent.trim();
+        navigator.clipboard.writeText(text);
+      };
+      document.querySelector("#copyHtmlPath").onclick = () => {
+        const text = document.querySelector("#htmlPath").textContent.trim();
+        navigator.clipboard.writeText(text);
+      };
+    </script>
+  </body>
+</html>
