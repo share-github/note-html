@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" contenteditable>
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -95,6 +95,7 @@
       }
       function createNoteText() {
         const noteText = document.createElement("pre");
+        noteText.contentEditable = true;
         noteText.classList.add("note-text");
         noteText.innerText = "Write_here";
         return noteText;
