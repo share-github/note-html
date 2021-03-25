@@ -10,7 +10,7 @@
     html {
       font-size: 0.8rem;
     }
-    button {
+    .header-btn {
       display: inline-block;
       max-width: 180px;
       text-align: left;
@@ -25,7 +25,7 @@
       border-radius: 4px;
       transition: 0.4s;
     }
-    button:hover {
+    .header-btn:hover {
       background-color: #3c914a;
       border-color: #3c914a;
       color: #fff;
@@ -62,8 +62,8 @@
   <body>
     <header>
       <div class="button-box">
-        <button type="button" id="newNote">new note</button>
-        <button type="button" id="newRedNote">new red note</button>
+        <button type="button" id="newNote" class="header-btn">new note</button>
+        <button type="button" id="newRedNote" class="header-btn">new red note</button>
       </div>
     </header>
 
@@ -80,25 +80,11 @@
         createNote("red");
       };
       function createNote(color) {
-        const noteArea = document.querySelector(".note-area");
-        const note = createNoteContent(color);
-        const noteText = createNoteText();
-        note.appendChild(noteText);
-        noteArea.appendChild(note);
-      }
-      function createNoteContent(color) {
-        const noteContent = document.createElement("div");
-        noteContent.classList.add("note");
-        if (color === "yellow") noteContent.classList.add("yellow");
-        if (color === "red") noteContent.classList.add("red");
-        return noteContent;
-      }
-      function createNoteText() {
-        const noteText = document.createElement("pre");
-        noteText.contentEditable = true;
-        noteText.classList.add("note-text");
-        noteText.innerText = "Write_here";
-        return noteText;
+        const note = `
+          <div class="note ${color}">
+            <pre contenteditable="true" class="note-text">Write_here</pre>
+          </div>`;
+        document.querySelector(".note-area").insertAdjacentHTML("beforeend", note);
       }
     </script>
   </body>
