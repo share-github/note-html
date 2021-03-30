@@ -67,24 +67,45 @@
       </div>
     </header>
 
-    <section class="note-area">
-      <!-- note area -->
-      <!-- /note area -->
-    </section>
+    <!-- note area -->
+    <section class="note-area"></section>
+    <!-- /note area -->
 
     <script>
       document.querySelector("#newNote").onclick = () => {
         createNote("yellow");
+        const noteText = document.querySelector(".note-area > .note:last-child > .note-text");
+        focusAndSelect(noteText);
       };
+
       document.querySelector("#newRedNote").onclick = () => {
         createNote("red");
+        const noteText = document.querySelector(".note-area > .note:last-child > .note-text");
+        focusAndSelect(noteText);
       };
+
+      /**
+       * 指定のCSSを付与して、新規メモを作成する。
+       * @oaram {string} CSS color
+       */
       function createNote(color) {
         const note = `
           <div class="note ${color}">
             <pre contenteditable="true" class="note-text">Write_here</pre>
           </div>`;
         document.querySelector(".note-area").insertAdjacentHTML("beforeend", note);
+      }
+
+      /**
+       * 指定要素を全選択・フォーカスする。
+       * @oaram {HTMLElement} element
+       */
+      function focusAndSelect(element) {
+        element.focus();
+        const range = document.createRange();
+        range.selectNodeContents(element);
+        window.getSelection().removeAllRanges(); // Chromeだと選択要素が設定されていると、addRange()で警告が発生して実行されない。
+        window.getSelection().addRange(range);
       }
     </script>
   </body>
