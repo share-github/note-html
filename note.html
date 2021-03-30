@@ -80,20 +80,27 @@
 
       document.querySelector("#newRedNote").onclick = () => {
         createNote("red");
-        const noteText = document.querySelector(".note-area > .note:last-child > .note-text");
+        const noteText = document.querySelector(".note-area > .note:first-child > .note-text");
         focusAndSelect(noteText);
       };
 
       /**
        * 指定のCSSを付与して、新規メモを作成する。
+       * css:yellow => note-area の末尾に追加
+       * css:red    => note-area の先頭に追加
        * @oaram {string} CSS color
        */
       function createNote(color) {
         const note = `
-          <div class="note ${color}">
+          <div class="note ${colorCss}">
             <pre contenteditable="true" class="note-text">Write_here</pre>
           </div>`;
-        document.querySelector(".note-area").insertAdjacentHTML("beforeend", note);
+        if (colorCss === "yellow") {
+          document.querySelector(".note-area").insertAdjacentHTML("beforeend", note);
+        }
+        if (colorCss === "red") {
+          document.querySelector(".note-area").insertAdjacentHTML("afterbegin", note);
+        }
       }
 
       /**
