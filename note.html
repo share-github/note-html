@@ -88,9 +88,9 @@
        * 指定のCSSを付与して、新規メモを作成する。
        * css:yellow => note-area の末尾に追加
        * css:red    => note-area の先頭に追加
-       * @oaram {string} CSS color
+       * @oaram {string} colorCss 色指定CSS
        */
-      function createNote(color) {
+      function createNote(colorCss) {
         const note = `
           <div class="note ${colorCss}">
             <pre contenteditable="true" class="note-text">Write_here</pre>
