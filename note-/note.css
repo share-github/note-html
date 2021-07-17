@@ -1,0 +1,143 @@
+@charset "UTF-8";
+
+html {
+  font-size: 0.8rem;
+}
+
+/*===========================================*/
+/* header button */
+/*===========================================*/
+.button-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header-btn {
+  display: inline-block;
+  max-width: 180px;
+  text-align: left;
+  border: 2px solid #3c914a;
+  font-size: 1rem;
+  color: #3c914a;
+  background-color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 4px 5px;
+  margin: 0 5px;
+  border-radius: 4px;
+  transition: 0.4s;
+}
+
+.header-btn:hover {
+  background-color: #3c914a;
+  border-color: #3c914a;
+  color: #fff;
+}
+
+.header-btn-disabled {
+  display: inline-block;
+  max-width: 180px;
+  text-align: left;
+  border: 2px solid #bfbebe;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #b5b3b3;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 4px 5px;
+  margin: 0 5px;
+  border-radius: 4px;
+  transition: 0.4s;
+  pointer-events: none;
+}
+
+/*===========================================*/
+/* note */
+/*===========================================*/
+.note-area {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.note {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin: 5px;
+  padding: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.yellow {
+  background-color: #fcf4ac;
+}
+
+.red {
+  background-color: #ffe4f1;
+}
+
+.note-text {
+  margin: 0;
+  /* padding: 0 10px 0 0; */
+  font-family: "メイリオ", sans-serif;
+}
+
+.note-btn-area {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-btn {
+  width: 10px;
+  height: 10px;
+  cursor: default;
+  visibility: hidden;
+}
+
+.note:hover .delete-btn {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgb(179, 179, 179);
+  font-size: 8px;
+  text-align: center;
+  line-height: 10px;
+  visibility: visible;
+}
+
+/*===========================================*/
+/* modal */
+/*===========================================*/
+.modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  transition: 0.75s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-display {
+  visibility: hidden;
+  opacity: 0;
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: #555555;
+  color: white;
+  border-radius: 4px;
+}
+
+.modal-content p {
+  margin: 0;
+  padding-top: 20px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  padding-left: 40px;
+}

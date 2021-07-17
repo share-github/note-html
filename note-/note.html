@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="note.css">
+  <title>note</title>
+</head>
+
+<body>
+  <header>
+    <div class="button-box">
+      <button type="button" id="reload" class="header-btn">reload</button>
+      <button type="button" id="save" class="header-btn-disabled">save</button>
+      <button type="button" id="newNote" class="header-btn">new note</button>
+      <button type="button" id="newRedNote" class="header-btn">new red note</button>
+    </div>
+  </header>
+
+  <section class="note-area"></section>
+
+  <div id="modal" class="modal modal-display">
+    <div class="modal-content">
+      <p>Saved.</p>
+    </div>
+  </div>
+
+  <script src="note.js"></script>
+</body>
+
+</html>
