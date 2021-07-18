@@ -5,20 +5,11 @@ const CSS_RED = 'red';
 let handleFile;
 
 document.querySelector('#reload').addEventListener('click', async () => {
-    [handleFile] = await window.showOpenFilePicker();
-    const file = await handleFile.getFile();
-    const fileContents = await file.text();
-    document.querySelector('.note-area').innerHTML = fileContents;
-    document.querySelector('#save').classList.replace('header-btn-disabled', 'header-btn');
-    addDeleteBtnClickEvent();
+    await openNote();
 });
 
 document.querySelector('#save').addEventListener('click', async () => {
-    const noteAreaHTML = document.querySelector('.note-area').innerHTML;
-    const writable = await handleFile.createWritable();
-    await writable.write(noteAreaHTML);
-    await writable.close();
-    popSaveMessage();
+    await save();
 });
 
 document.querySelector('#newNote').onclick = () => {
@@ -33,7 +24,46 @@ document.querySelector('#newRedNote').onclick = () => {
     focusAndSelect(noteText);
 };
 
-const addDeleteBtnClickEvent = () => {
+document.body.addEventListener('keydown', async event => {
+    if (event.altKey && event.key === 's') {
+        await save();
+    }
+});
+
+/**
+ * noteファイルを開いて画面に表示する
+ * 1. File System Access API でファイルを開く
+ * 2. .note-area の innerHTML に読み込んだファイルのテキストを代入
+ * 3. save ボタンを活性化
+ * 4. 各 note の×ボタン押下イベント追加
+ */
+async function openNote() {
+    [handleFile] = await window.showOpenFilePicker();
+    const file = await handleFile.getFile();
+    const fileContents = await file.text();
+    document.querySelector('.note-area').innerHTML = fileContents;
+    document.querySelector('#save').classList.replace('header-btn-disabled', 'header-btn');
+    addDeleteBtnClickEvent();
+}
+
+/**
+ * noteを保存する
+ * 1. .note-area の innerHTML を取得
+ * 2. File System Access API でファイルを上書き保存
+ * 3. 保存メッセージをポップアップ
+ */
+async function save() {
+    const noteAreaHTML = document.querySelector('.note-area').innerHTML;
+    const writable = await handleFile.createWritable();
+    await writable.write(noteAreaHTML);
+    await writable.close();
+    popSaveMessage();
+}
+
+/**
+ * ×ボタンクリックイベント追加
+ */
+function addDeleteBtnClickEvent() {
     document.querySelectorAll('.delete-btn').forEach((e) => {
         e.addEventListener('click', (e) => {
             e.target.parentNode.parentNode.remove();
